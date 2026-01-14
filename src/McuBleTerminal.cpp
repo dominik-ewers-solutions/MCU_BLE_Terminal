@@ -1,4 +1,5 @@
 #include "McuBleTerminal.h"
+
 #include <BLEDevice.h>
 #include <BLEServer.h>
 #include <BLEUtils.h>
@@ -7,7 +8,6 @@
 static BLECharacteristic* txChar = nullptr;
 static bool clientConnected = false;
 
-// RX FIFO
 static const size_t RX_BUFFER_SIZE = 256;
 static uint8_t rxBuffer[RX_BUFFER_SIZE];
 static volatile size_t rxHead = 0;
@@ -17,16 +17,19 @@ class ServerCallbacks : public BLEServerCallbacks {
   void onConnect(BLEServer*) override {
     clientConnected = true;
   }
+
   void onDisconnect(BLEServer*) override {
     clientConnected = false;
+    BLEDevice::startAdvertising();
   }
 };
 
 class RxCallbacks : public BLECharacteristicCallbacks {
   void onWrite(BLECharacteristic* characteristic) override {
     String value = characteristic->getValue();
-for (size_t i = 0; i < value.length(); i++) {
-  uint8_t c = value[i];
+
+    for (size_t i = 0; i < value.length(); i++) {
+      uint8_t c = value[i];
       size_t next = (rxHead + 1) % RX_BUFFER_SIZE;
       if (next != rxTail) {
         rxBuffer[rxHead] = c;
@@ -62,7 +65,11 @@ bool WirelessSerialClass::begin(const char* deviceName) {
 
   BLEAdvertising* advertising = BLEDevice::getAdvertising();
   advertising->addServiceUUID(WS_SERVICE_UUID);
-  advertising->start();
+  advertising->setScanResponse(true);
+  advertising->setMinPreferred(0x06);
+  advertising->setMinPreferred(0x12);
+
+  BLEDevice::startAdvertising();
 
   return true;
 }
@@ -75,7 +82,6 @@ bool WirelessSerialClass::connected() {
   return clientConnected;
 }
 
-// ===== TX =====
 size_t WirelessSerialClass::write(uint8_t c) {
   return write(&c, 1);
 }
@@ -91,12 +97,11 @@ size_t WirelessSerialClass::write(const uint8_t* buffer, size_t size) {
     txChar->setValue((uint8_t*)(buffer + offset), chunk);
     txChar->notify();
     offset += chunk;
-    delay(1); // BLE friendly
+    delay(1);
   }
   return size;
 }
 
-// ===== RX =====
 int WirelessSerialClass::available() {
   return (RX_BUFFER_SIZE + rxHead - rxTail) % RX_BUFFER_SIZE;
 }
@@ -114,5 +119,4 @@ int WirelessSerialClass::peek() {
 }
 
 void WirelessSerialClass::flush() {
-  // nothing to do
 }
