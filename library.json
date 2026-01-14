@@ -1,0 +1,29 @@
+{
+    "name": "McuBleTerminal",
+    "version": "0.0.1",
+    "description": "Wireless Serial Terminal over BLE for ESP32",
+    "keywords": [
+        "ble",
+        "bluetooth",
+        "serial",
+        "terminal",
+        "esp32",
+        "debug"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dominik-ewers-solutions/MCU_BLE_Terminal"
+    },
+    "authors": [
+        {
+            "name": "Dominik Ewers"
+        }
+    ],
+    "license": "MIT",
+    "frameworks": [
+        "arduino"
+    ],
+    "platforms": [
+        "espressif32"
+    ]
+}
