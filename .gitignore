@@ -1,3 +1,6 @@
 /.vscode
 /src/.vscode
 /examples/.vscode
+/examples/Commands/.vscode
+/examples/Echo/.vscode
+/examples/SensorValues/.vscode
