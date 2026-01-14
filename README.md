@@ -198,6 +198,7 @@ App features:
 - Multi-language user interface
 
 The app is designed to behave similar to a classic serial monitor.
+Currently the App is not available, but it will be Soon.
 
 ---
 
