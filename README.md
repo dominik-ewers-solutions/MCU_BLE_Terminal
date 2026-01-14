@@ -42,7 +42,7 @@ Add the library as a dependency:
 
 ini:
 lib_deps =
-  https://github.com/yourname/mcu-ble-terminal-esp32
+  https://github.com/dominik-ewers-solutions/MCU_BLE_Terminal
 
 
 ## Usage
