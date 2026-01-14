@@ -56,9 +56,11 @@ bool WirelessSerialClass::begin(const char* deviceName) {
   txChar->addDescriptor(new BLE2902());
 
   BLECharacteristic* rxChar = service->createCharacteristic(
-    WS_CHAR_RX_UUID,
-    BLECharacteristic::PROPERTY_WRITE
-  );
+  WS_CHAR_RX_UUID,
+  BLECharacteristic::PROPERTY_WRITE |
+  BLECharacteristic::PROPERTY_WRITE_NR
+);
+
   rxChar->setCallbacks(new RxCallbacks());
 
   service->start();
@@ -119,4 +121,33 @@ int WirelessSerialClass::peek() {
 }
 
 void WirelessSerialClass::flush() {
+}
+
+static String rxLine;
+
+bool WirelessSerialClass::availableLine() {
+  while (available()) {
+    char c = read();
+
+    if (c == '\r') {
+      continue;
+    }
+
+    if (c == '\n') {
+      return true;
+    }
+
+    rxLine += c;
+
+    if (rxLine.length() > 128) {
+      rxLine = "";
+    }
+  }
+  return false;
+}
+
+String WirelessSerialClass::readLine() {
+  String line = rxLine;
+  rxLine = "";
+  return line;
 }

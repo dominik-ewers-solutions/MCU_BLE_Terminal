@@ -23,6 +23,9 @@ public:
   int read() override;
   int peek() override;
   void flush() override;
+  bool availableLine();
+  String readLine();
+
 
 private:
   void notify(const uint8_t* data, size_t len);
