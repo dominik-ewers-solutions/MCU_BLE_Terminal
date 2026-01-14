@@ -1,7 +1,8 @@
-#include "WirelessSerial.h"
+#include "McuBleTerminal.h"
 #include <BLEDevice.h>
 #include <BLEServer.h>
 #include <BLEUtils.h>
+#include <BLE2902.h>
 
 static BLECharacteristic* txChar = nullptr;
 static bool clientConnected = false;
@@ -23,8 +24,9 @@ class ServerCallbacks : public BLEServerCallbacks {
 
 class RxCallbacks : public BLECharacteristicCallbacks {
   void onWrite(BLECharacteristic* characteristic) override {
-    std::string value = characteristic->getValue();
-    for (uint8_t c : value) {
+    String value = characteristic->getValue();
+for (size_t i = 0; i < value.length(); i++) {
+  uint8_t c = value[i];
       size_t next = (rxHead + 1) % RX_BUFFER_SIZE;
       if (next != rxTail) {
         rxBuffer[rxHead] = c;
@@ -86,7 +88,7 @@ size_t WirelessSerialClass::write(const uint8_t* buffer, size_t size) {
 
   while (offset < size) {
     size_t chunk = min(mtu, size - offset);
-    txChar->setValue(buffer + offset, chunk);
+    txChar->setValue((uint8_t*)(buffer + offset), chunk);
     txChar->notify();
     offset += chunk;
     delay(1); // BLE friendly

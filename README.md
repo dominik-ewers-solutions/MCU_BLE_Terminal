@@ -46,7 +46,7 @@ lib_deps =
 
 
 ## Usage
-#include <WirelessSerial.h>
+#include <McuBleTerminal.h>
 
 void setup() {
   WirelessSerial.begin("MyESP32");
