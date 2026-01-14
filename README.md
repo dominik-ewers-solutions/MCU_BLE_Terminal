@@ -54,13 +54,11 @@ void setup() {
 }
 
 void loop() {
-  WirelessSerial.printf("Millis: %lu\n", millis());
-
+  WirelessSerial.printf("Millis: %lu\n", millis())
   while (WirelessSerial.available()) {
     char c = WirelessSerial.read();
     WirelessSerial.printf("RX: %c\n", c);
   }
-
   delay(1000);
 }
 
