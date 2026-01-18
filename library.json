@@ -1,6 +1,6 @@
 {
     "name": "McuBleTerminal",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Wireless Serial Terminal over BLE for ESP32",
     "keywords": [
         "ble",

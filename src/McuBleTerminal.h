@@ -12,6 +12,8 @@ public:
   bool begin(const char* deviceName);
   void end();
 
+  void loop();
+
   bool connected();
 
   // TX (ESP -> App)
@@ -25,10 +27,6 @@ public:
   void flush() override;
   bool availableLine();
   String readLine();
-
-
-private:
-  void notify(const uint8_t* data, size_t len);
 };
 
 extern WirelessSerialClass WirelessSerial;

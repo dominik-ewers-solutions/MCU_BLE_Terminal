@@ -33,7 +33,14 @@ Using the Arduino framework:
 - ESP32-C3
 - ESP32-S3
 
-Currently working on nRF52 implementation
+Experimental support
+ - nRF52 family (e.g. Arduino Nano 33 BLE, nRF52840) via ArduinoBLE
+
+nRF52 support uses a separate BLE backend and is considered experimental:
+Feature set is compatible with the ESP32 version
+Same UUIDs and mobile app are used
+Stability and performance may differ depending on board and core Version
+
 
 ---
 
@@ -54,6 +61,13 @@ Add the library as a dependency:
 lib_deps =
   de-solutions/McuBleTerminal@^0.0.1
 ```
+
+### PlatformIO and nRF52
+
+This library works with both Arduino IDE and PlatformIO.
+
+For nRF52 boards using PlatformIO, make sure to add:
+lib_deps = arduino-libraries/ArduinoBLE
 
 ---
 
@@ -166,6 +180,22 @@ void loop() {
 ```
 
 If you type text in the app and receive it back unchanged, the connection is working.
+
+---
+
+## nRF52 specific notes:
+When using nRF52 boards, the ArduinoBLE stack requires regular polling.
+
+Important:
+Call WirelessSerial.loop() inside your loop() function:
+```
+void loop() {
+  WirelessSerial.loop();
+}
+```
+
+This is not required on ESP32 platforms.
+
 
 ---
 
