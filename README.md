@@ -28,7 +28,7 @@ Use your phone as a wireless Serial Monitor for debugging, logging and simple in
 
 ## Supported Hardware
 
-Using the Arduino framework
+Using the Arduino framework:
 - ESP32
 - ESP32-C3
 - ESP32-S3
