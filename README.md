@@ -198,7 +198,9 @@ App features:
 - Multi-language user interface
 
 The app is designed to behave similar to a classic serial monitor.
-Currently the App is not available, but it will be Soon.
+Currently the App is not available Apple's App Store, but it will be Soon.
+
+Google Play: https://play.google.com/store/apps/details?id=com.desolutions.mcu_ble_terminal
 
 ---
 
