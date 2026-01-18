@@ -1,5 +1,5 @@
 # McuBleTerminal
-## ESP32 Wireless Serial over BLE
+## MCU Wireless Serial over BLE
 
 McuBleTerminal is a lightweight ESP32 library that provides a wireless serial terminal over Bluetooth Low Energy (BLE).
 
@@ -7,7 +7,7 @@ It is designed as a drop-in replacement for the Arduino Serial interface and all
 A companion mobile app acts as a BLE serial monitor and terminal.
 
 The goal of this library is simple:
-Use your phone as a wireless Serial Monitor for debugging, logging and simple interaction with your ESP32.
+Use your phone as a wireless Serial Monitor for debugging, logging and simple interaction with your ESP32 or another Supportet MCU.
 
 ---
 
