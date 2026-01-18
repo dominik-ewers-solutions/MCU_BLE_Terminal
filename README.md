@@ -69,7 +69,7 @@ This library works with both Arduino IDE and PlatformIO.
 For nRF52 boards using PlatformIO, make sure to add:
 ```ini
 lib_deps =
-  lib_deps = arduino-libraries/ArduinoBLE
+  arduino-libraries/ArduinoBLE
 ```
 
 ---
