@@ -38,9 +38,10 @@ Other microcontrollers may be supported in the future.
 
 ### Arduino IDE
 
-1. Clone or download this repository
-2. Copy it into your Arduino libraries folder
-3. Restart the Arduino IDE
+1. Open the Arduino IDE  
+2. Go to **Sketch → Include Library → Manage Libraries…**  
+3. Search for **MCU BLE Terminal**  
+4. Click **Install**
 
 ### PlatformIO
 
@@ -48,7 +49,7 @@ Add the library as a dependency:
 
 ```ini
 lib_deps =
-  https://github.com/dominik-ewers-solutions/MCU_BLE_Terminal
+  de-solutions/McuBleTerminal@^0.0.1
 ```
 
 ---
