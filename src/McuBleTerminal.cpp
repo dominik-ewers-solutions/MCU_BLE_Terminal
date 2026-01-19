@@ -33,10 +33,11 @@ class ServerCallbacks : public BLEServerCallbacks {
 
 class RxCallbacks : public BLECharacteristicCallbacks {
   void onWrite(BLECharacteristic* characteristic) override {
-    String value = characteristic->getValue();
+    auto value = characteristic->getValue();
+    size_t len = value.length();
 
-    for (size_t i = 0; i < value.length(); i++) {
-      uint8_t c = value[i];
+    for (size_t i = 0; i < len; i++) {
+      uint8_t c = (uint8_t)value[i];
       size_t next = (rxHead + 1) % RX_BUFFER_SIZE;
       if (next != rxTail) {
         rxBuffer[rxHead] = c;
