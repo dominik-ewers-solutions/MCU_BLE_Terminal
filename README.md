@@ -59,7 +59,7 @@ Add the library as a dependency:
 
 ```ini
 lib_deps =
-  de-solutions/McuBleTerminal@^0.0.1
+  de-solutions/McuBleTerminal@^0.1.1
 ```
 
 ### PlatformIO and nRF52
